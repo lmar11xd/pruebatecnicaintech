@@ -1,0 +1,40 @@
+USE [ChallengeInTech]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 23/09/2022 11:46:02 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Products](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](150) NULL,
+	[Price] [decimal](18, 2) NULL,
+	[CreatedDate] [datetime2](7) NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Users](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Username] [nvarchar](50) NULL,
+	[PasswordHash] [varbinary](max) NULL,
+	[PasswordSalt] [varbinary](max) NULL,
+	[CreatedDate] [datetime2](7) NULL,
+	[ModifiedDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UniqueUsername_Users] UNIQUE NONCLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
